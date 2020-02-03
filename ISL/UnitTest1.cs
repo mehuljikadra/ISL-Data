@@ -298,7 +298,7 @@ namespace ISL
             //Squad tab
             SquadTab();
 
-            GenericSquadCheck _ATKsquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\Squaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _ATKsquad = new GenericSquadCheck(driver);
             _ATKsquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -308,7 +308,7 @@ namespace ISL
 
             //BengluruTeam
             SquadTab();
-            GenericSquadCheck _BengaluruSquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\BengaluruSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _BengaluruSquad = new GenericSquadCheck(driver);
             _BengaluruSquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -317,7 +317,7 @@ namespace ISL
 
             //ChennayianTeam
             SquadTab();
-            GenericSquadCheck _Chennaisquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\ChennaiSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Chennaisquad = new GenericSquadCheck(driver);
             _Chennaisquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -326,7 +326,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Goasquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\FCGoaSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Goasquad = new GenericSquadCheck(driver);
             _Goasquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -335,7 +335,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Hydrabadsquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\HydrabadSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Hydrabadsquad = new GenericSquadCheck(driver);
             _Hydrabadsquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -344,7 +344,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Jamshedpursquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\JamshedpurSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Jamshedpursquad = new GenericSquadCheck(driver);
             _Jamshedpursquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -353,7 +353,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Keralasquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\KeralaSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Keralasquad = new GenericSquadCheck(driver);
             _Keralasquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -362,7 +362,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Mumbaisquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\MumbaiSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Mumbaisquad = new GenericSquadCheck(driver);
             _Mumbaisquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -371,7 +371,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Northeastsquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\NortheastSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Northeastsquad = new GenericSquadCheck(driver);
             _Northeastsquad.GetGenericSquadCheckData();
 
             TeamsLogo();
@@ -380,7 +380,7 @@ namespace ISL
             Thread.Sleep(2000);
             SquadTab();
 
-            GenericSquadCheck _Odhishasquad = new GenericSquadCheck(driver, @"D:\Automation\ISL\Player Data\OdishaSquaddetail.xlsx", @"D:\Automation\ISL\Player Data\ISLPlayerData.xlsx");
+            GenericSquadCheck _Odhishasquad = new GenericSquadCheck(driver);
             _Odhishasquad.GetGenericSquadCheckData();
 
         }
@@ -391,7 +391,7 @@ namespace ISL
             driver.Navigate().GoToUrl("https://www.indiansuperleague.com/");
 
             driver.Manage().Window.Maximize();
-            
+
             string ReadExcel;
             int rctn = 6;
 
@@ -418,14 +418,18 @@ namespace ISL
                     search.SendKeys(Keys.Enter);
 
                     var visible = driver.FindElement(By.XPath("//*[@id='cookiebtn']"));
-                    
+
                     if (visible.Displayed)
                     {
                         //Assert.AreEqual(true, visible.Displayed);
                         visible.Click();
                     }
-                    
-                    
+                    var record = driver.FindElement(By.XPath("/html/body/div[1]/section/myapp/section/div/div/div/div/section/component/div/div/div[2]/div[2]/span")).Text;
+                    if (record.StartsWith("0 records for"))
+                    {
+                        Console.WriteLine(ReadExcel, "player is deleted");
+                    }
+
                     /* FunctionalLibrary.TryFindElement(driver, "//*[@id='cookiebtn']" );
 
                          var visible =  IsElementVisible(element);
@@ -435,67 +439,71 @@ namespace ISL
                          }*/
 
 
-
-                    var viewprofile = driver.FindElement(By.Id("player-list"));
-                    var action1 = new OpenQA.Selenium.Interactions.Actions(driver);
-                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(document.body.scrollHeight, 0)");
-                    action1.MoveToElement(viewprofile);
-                    action1.Perform();
-                    viewprofile = new WebDriverWait(driver, new TimeSpan(0, 1, 0))
-                               .Until(driver => driver.FindElement(By.Id("player-list")));
-
-                    var playername = driver.FindElement(By.CssSelector(".article-name")).Text;
-
-                    if (ReadExcel.Equals(playername))
+                    else if (IsElementPresent(By.Id("player-list")))
                     {
-                        Debug.WriteLine(playername,"player name is correct");
-                    }
-                    else
-                    {
-                        Debug.WriteLine(playername,"player name is incorrect");
-                    }
-                   var webe =   driver.FindElement(By.Id("player-list"));
+                        
+
+                            var viewprofile = driver.FindElement(By.Id("player-list"));
+                            var action1 = new OpenQA.Selenium.Interactions.Actions(driver);
+                            ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(document.body.scrollHeight, 0)");
+                            action1.MoveToElement(viewprofile);
+                            action1.Perform();
+                            viewprofile = new WebDriverWait(driver, new TimeSpan(0, 1, 0))
+                                       .Until(driver => driver.FindElement(By.Id("player-list")));
+
+                            var playername = driver.FindElement(By.CssSelector(".article-name")).Text;
+
+                            if (ReadExcel.Equals(playername))
+                            {
+                                Console.WriteLine(playername, "player name is correct");
+                            }
+                            else
+                            {
+                                Console.WriteLine(playername, "player name is incorrect");
+                            }
+                            var webe = driver.FindElement(By.Id("player-list"));
 
 
-                  var href =  webe.FindElement(By.CssSelector("a")).GetAttribute("href");
-                   
+                            var href = webe.FindElement(By.CssSelector("a")).GetAttribute("href");
+
+
+
+                            if (href == null)
+                            {
+                                Console.WriteLine(playername, "Player not clikable");
+
+
+
+                            }
+                            else
+                            {
+                                Debug.WriteLine(playername, "player is clikable");
+                                webe.Click();
+                                Thread.Sleep(1000);
+                                var playerdetail = driver.FindElement(By.CssSelector(".si-player-name")).Text;
+                                if (playername.Equals(playerdetail))
+                                {
+                                    Console.WriteLine(playername, "Redirected on detail page");
+                                }
+                                var error = driver.FindElement(By.CssSelector(".txt-1")).Text;
+                                if (error.Equals("Oops!Page Not Found."))
+                                {
+                                    String currenturl = driver.Url;
+                                    Console.WriteLine(currenturl, "404 page");
+                                }
+                            }
+
+
+
+                    }
+                  
                     
-                   // WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromMinutes(1));
-
-                    //wait.Until(ExpectedConditions.UrlContains(href));
-
-                    if (href == null)
-                    {
-                        Debug.WriteLine(playername,"Player not clikable");
+                  else
+                   {
+                        String currenturl = driver.Url;
+                        Console.WriteLine(currenturl,"player profile isn't available");
                        
-                      
-                       
-                    }
-                    else
-                    {
-                        Debug.WriteLine(playername, "player is clikable");
-                        webe.Click();
-                        Thread.Sleep(1000);
-                        var playerdetail = driver.FindElement(By.CssSelector(".si-player-name")).Text;
-                        if (playername.Equals(playerdetail))
-                        {
-                            Debug.WriteLine("Redirected on detail page");
-                        }
-                    }
-
-
-
-                    Thread.Sleep(2000);
-                    /*var viewprofilesroll = driver.FindElement(By.CssSelector(".article-content"));
-                    var action2 = new OpenQA.Selenium.Interactions.Actions(driver);
-                    ((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(document.body.scrollHeight, 0)");
-                    action2.MoveToElement(viewprofilesroll);
-                    action2.Perform();
-                    viewprofilesroll = new WebDriverWait(driver, new TimeSpan(0, 1, 0))
-                               .Until(driver => driver.FindElement(By.CssSelector(".article-content")));*/
-                    //svar viewprofilesroll = driver.FindElement(By.CssSelector(".si-player-name"));
-
-                    
+                   }
 
                 }
 
@@ -503,8 +511,21 @@ namespace ISL
 
 
         }
+        
+        private bool IsElementPresent(By by)
+        {
+            try
+            {
+                driver.FindElement(by);
+                return true;
+            }
+            catch (NoSuchElementException)
+            {
+                return false;
+            }
+        }
 
-       
+
         [TestMethod]
         public void TeamwiseLeagueTracker()
         {

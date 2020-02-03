@@ -74,17 +74,17 @@ namespace ISL
                 }
 
                 oXL.UserControl = false;
-                oWB.SaveAs(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\TeamCleanSheets.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+                oWB.SaveAs(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\TeamCleanSheets.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                     false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 oXL.Visible = true;
 
-                string srcPath = (@"C:\Users\aditya.bhosle\Desktop\ISL\FTeamcleansheets.xls");
+                string srcPath = (@"C:\Users\mehul\source\repos\ISL\ISL\Dashboard stats data\FTeamcleansheets.xls");
 
                 oWB = (excel._Workbook)(oXL.Workbooks.Open(srcPath));
                 oSheet = oWB.Worksheets.get_Item(1);
 
-                string destPath = (@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\TeamCleanSheets.xlsx");
+                string destPath = (@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\TeamCleanSheets.xlsx");
                 oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Open(destPath));
                 dSheet = oWB.Worksheets.Add();
 
@@ -96,12 +96,12 @@ namespace ISL
 
                 oXL.ActiveSheet.Range["D2:D1000"] = "=VLOOKUP(A2,Sheet1!A:B,1,False)";
                 oXL.ActiveSheet.Range["E2:E1000"] = "=VLOOKUP(A2,Sheet1!A:B,2,FALSE)";
-                oXL.ActiveSheet.Range["F2:F1000"] = "=EXACT(D:D,A:A)";
-                oXL.ActiveSheet.Range["G2:G1000"] = "=EXACT(E:E,B:B)";
+                oXL.ActiveSheet.Range["F2:F1000"] = "=EXACT(@D:D,@A:A)";
+                oXL.ActiveSheet.Range["G2:G1000"] = "=EXACT(@E:E,@B:B)";
 
 
                 oXL.UserControl = false;
-                oWB.SaveAs(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\TeamCleanSheets.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+                oWB.SaveAs(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\TeamCleanSheets.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                    false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
                    Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 oXL.Visible = true;

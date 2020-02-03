@@ -63,7 +63,7 @@ namespace ISL
 
 
             excel.Application x1app = new excel.Application();
-            excel.Workbook x1workbook = x1app.Workbooks.Open(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\Excel_stats.xlsx", ReadOnly: false);
+            excel.Workbook x1workbook = x1app.Workbooks.Open(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\Excel_stats.xlsx", ReadOnly: false);
             excel.Worksheet xlWorkSheet = (excel.Worksheet)x1workbook.Worksheets[1];
 
             excel.Range x1range = xlWorkSheet.UsedRange;
@@ -170,17 +170,17 @@ namespace ISL
 
 
                 oXL.UserControl = false;
-                oWB.SaveAs(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\leaguetracker.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+                oWB.SaveAs(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\leaguetracker.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                         false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 oXL.Visible = true;
 
-                string srcPath = (@"C:\Users\aditya.bhosle\Desktop\ISL\FootballOveralltracker.xls");
+                string srcPath = (@"C:\Users\mehul\source\repos\ISL\ISL\Dashboard stats data\FootballOveralltracker.xls");
 
                 oWB = (excel._Workbook)(oXL.Workbooks.Open(srcPath));
                 oSheet = oWB.Worksheets.get_Item(1);
 
-                string destPath = (@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\leaguetracker.xlsx");
+                string destPath = (@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\leaguetracker.xlsx");
                 oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Open(destPath));
                 oXL.Visible = true;
                 dSheet = oWB.Worksheets.Add();
@@ -204,7 +204,7 @@ namespace ISL
                 oXL.ActiveSheet.Range["K16"] = "=VLOOKUP(K13,Sheet1!F:F,1,FALSE)";
 
                 oXL.UserControl = false;
-                oWB.SaveAs(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\leaguetracker.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+                oWB.SaveAs(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\leaguetracker.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                     false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 oXL.Visible = true;

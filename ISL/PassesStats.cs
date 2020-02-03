@@ -85,17 +85,17 @@ namespace ISL
                 }
 
                 oXL.UserControl = false;
-                oWB.SaveAs(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\Passess.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+                oWB.SaveAs(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\Passess.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                         false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
                     Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
                 oXL.Visible = true;
             
-             string srcPath = (@"C:\Users\aditya.bhosle\Desktop\ISL\Passes.xls");
+             string srcPath = (@"C:\Users\mehul\source\repos\ISL\ISL\Dashboard stats data\Passes.xls");
 
             oWB = (excel._Workbook)(oXL.Workbooks.Open(srcPath));
             oSheet = oWB.Worksheets.get_Item(1);
 
-            string destPath = (@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\Passess.xlsx");
+            string destPath = (@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\Passess.xlsx");
             oWB = (Microsoft.Office.Interop.Excel._Workbook)(oXL.Workbooks.Open(destPath));
             dSheet = oWB.Worksheets.Add();
 
@@ -107,12 +107,12 @@ namespace ISL
 
                 oXL.ActiveSheet.Range["D2:D1000"] = "=VLOOKUP(B2,Sheet1!B:C,1,False)";
                 oXL.ActiveSheet.Range["E2:E1000"] = "=VLOOKUP(B2,Sheet1!B:C,2,FALSE)";
-                oXL.ActiveSheet.Range["F2:F1000"] = "=EXACT(D:D,B:B)";
-                oXL.ActiveSheet.Range["G2:G1000"] = "=EXACT(E:E,C:C)";
+                oXL.ActiveSheet.Range["F2:F1000"] = "=EXACT(@D:D,@B:B)";
+                oXL.ActiveSheet.Range["G2:G1000"] = "=EXACT(@E:E,@C:C)";
 
 
                 oXL.UserControl = false;
-            oWB.SaveAs(@"C:\Users\aditya.bhosle\source\repos\Data\Data\NewFolder1\Passess.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
+            oWB.SaveAs(@"C:\Users\mehul\source\repos\ISL\ISL\Website stats data\Passess.xlsx", Microsoft.Office.Interop.Excel.XlFileFormat.xlWorkbookDefault, Type.Missing, Type.Missing,
                 false, false, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange,
                 Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
             oXL.Visible = true;
