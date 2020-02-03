@@ -31,14 +31,14 @@ namespace ISL
         public IWebDriver driver { get; private set; }
         public string BrowserDataFilePath { get; private set; }
 
-        private string SrcDataFilePath;
+        //private string SrcDataFilePath;
 
 
         public GenericSquadCheck(IWebDriver driver)
         {
             this.driver = driver;
             this.BrowserDataFilePath = BrowserDataFilePath;
-            this.SrcDataFilePath = SrcDataFilePath;
+            //this.SrcDataFilePath = SrcDataFilePath;
         }
         public void GetGenericSquadCheckData()
         {
